@@ -1,0 +1,272 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Private student profile containing PII and Dehradun delivery details.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth UID of the student."
+        },
+        "fullName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "description": "Student full name."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 5,
+          "maxLength": 150,
+          "description": "Student email address."
+        },
+        "mobile": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 15,
+          "pattern": "^[0-9+\\-\\s]{10,15}$",
+          "description": "Indian mobile number."
+        },
+        "college": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120,
+          "description": "College or university in Dehradun."
+        },
+        "accommodationType": {
+          "type": "string",
+          "enum": ["Hostel", "PG", "Rented Room"],
+          "description": "Student housing type."
+        },
+        "deliveryAddress": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 300,
+          "description": "Hostel, PG, or room delivery address in Dehradun."
+        },
+        "city": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80,
+          "description": "City name."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of profile creation."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last profile update."
+        }
+      },
+      "required": [
+        "uid",
+        "fullName",
+        "email",
+        "mobile",
+        "college",
+        "accommodationType",
+        "deliveryAddress",
+        "city",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "RentalBooking": {
+      "title": "RentalBooking",
+      "description": "Confirmed student rental booking with tenure, pricing, and delivery details.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Owner UID."
+        },
+        "orderNumber": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 32,
+          "pattern": "^[A-Z0-9\\-]+$",
+          "description": "Human-readable order code."
+        },
+        "customerName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "customerMobile": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 15,
+          "pattern": "^[0-9+\\-\\s]{10,15}$"
+        },
+        "college": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "accommodationType": {
+          "type": "string",
+          "enum": ["Hostel", "PG", "Rented Room"]
+        },
+        "deliveryAddress": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 300
+        },
+        "city": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 80
+        },
+        "itemsSummary": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 500
+        },
+        "itemCount": {
+          "type": "number"
+        },
+        "tenureMonths": {
+          "type": "number"
+        },
+        "monthlyRent": {
+          "type": "number"
+        },
+        "securityDeposit": {
+          "type": "number"
+        },
+        "deliveryFee": {
+          "type": "number"
+        },
+        "totalPayableNow": {
+          "type": "number"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["UPI / QR", "Cash on Delivery", "Campus Pay Later"]
+        },
+        "deliverySlot": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 80
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Confirmed", "Scheduled", "Active Rental", "Return Requested", "Cancelled"]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "orderNumber",
+        "customerName",
+        "customerMobile",
+        "college",
+        "accommodationType",
+        "deliveryAddress",
+        "city",
+        "itemsSummary",
+        "itemCount",
+        "tenureMonths",
+        "monthlyRent",
+        "securityDeposit",
+        "deliveryFee",
+        "totalPayableNow",
+        "paymentMethod",
+        "deliverySlot",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "SupportEnquiry": {
+      "title": "SupportEnquiry",
+      "description": "Student support or custom bulk rental enquiry.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "minLength": 5,
+          "maxLength": 150
+        },
+        "college": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "topic": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100
+        },
+        "message": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "userId",
+        "name",
+        "email",
+        "college",
+        "topic",
+        "message",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Private student profile documents keyed by Auth UID."
+    },
+    "/bookings/{bookingId}": {
+      "schema": {
+        "$ref": "#/entities/RentalBooking"
+      },
+      "description": "Student rental bookings strictly scoped to the owning userId."
+    },
+    "/enquiries/{enquiryId}": {
+      "schema": {
+        "$ref": "#/entities/SupportEnquiry"
+      },
+      "description": "Student enquiries scoped to the submitting userId."
+    }
+  }
+}
